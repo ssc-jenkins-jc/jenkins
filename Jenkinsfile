@@ -32,7 +32,7 @@ timestamps {
         stage('Manifest Generation') {
             withCredentials([
                 // Replace GITLAB_CREDENTIALS_ID with the id of your gitlab credentials
-                usernamePassword(credentialsId: 'jenkinsgithub', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN'), 
+                usernamePassword(credentialsId: 'jenkinsgithub', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN'), 
                 string(credentialsId: 'AQUA_KEY', variable: 'AQUA_KEY'), 
                 string(credentialsId: 'AQUA_SECRET', variable: 'AQUA_SECRET')
             ]) {
