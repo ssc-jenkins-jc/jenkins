@@ -22,11 +22,8 @@ timestamps {
                 '''
             }
         }
-        stage('Build Docker Image') {
-            // fake build by downloading an image
-	    // docker pull aquasaemea/mynodejs-app:1.0
-            sh '''
-	        echo the image has been built !!
+        stage('Build Image') {
+	    podman run --rm -e $AQUA_KEY -e $AQUA_SECRET -e TRIVY_RUN_AS_PLUGIN=aqua -e SAST=true -v /home/ubuntu/graphql-vulnerable/:/tmp docker.io/aquasec/aqua-scanner trivy fs --scanners config,vuln,secret --sast .
             '''
         }
         stage('Manifest Generation') {
